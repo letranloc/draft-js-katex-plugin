@@ -3,144 +3,161 @@ import katex from 'katex';
 import { Entity } from 'draft-js';
 import unionClassNames from 'union-class-names';
 import KatexOutput from './KatexOutput';
+import MathInput from './math-input/components/app';
 
 export default class TeXBlock extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { editMode: false };
-  }
-
-  onClick = () => {
-    if (this.state.editMode) {
-      return;
+    constructor(props) {
+        super(props);
+        this.state = { editMode: false }
     }
 
-    this.setState({
-      editMode: true,
-      texValue: this.getValue(),
-    }, () => {
-      this.startEdit();
-    });
-  };
+    callbacks = {};
 
-  onValueChange = (evt) => {
-    const value = evt.target.value;
-    let invalid = false;
-    try {
-      katex.__parse(value); // eslint-disable-line no-underscore-dangle
-    } catch (e) {
-      invalid = true;
-    } finally {
-      this.setState({
-        invalidTeX: invalid,
-        texValue: value,
-      });
-    }
-  };
+    onClick = () => {
+        if (this.state.editMode || this.props.store.getReadOnly()) {
+            return;
+        }
 
-  getValue = () => {
-    const entityKey = this.props.block.getEntityAt(0);
-    const entityData = Entity.get(entityKey).getData();
-    return entityData.content;
-  };
+        this.setState({
+            editMode: true,
+            texValue: this.getValue(),
+        }, () => {
+            this.startEdit();
+        });
+    };
 
-  startEdit = () => {
-    const { block, blockProps } = this.props;
-    blockProps.onStartEdit(block.getKey());
-  };
+    onValueChange = (evt) => {
+        const value = evt.target.value;
+        this.onMathInputChange(value);
+    };
 
-  finishEdit = (newContentState) => {
-    const { block, blockProps } = this.props;
-    blockProps.onFinishEdit(block.getKey(), newContentState);
-  };
+    onFocus = () => {
+        if (this.callbacks.blur) {
+            this.callbacks.blur();
+        }
+    };
 
-  remove = () => {
-    const { block, blockProps } = this.props;
-    blockProps.onRemove(block.getKey());
-  };
+    onMathInputChange = (value) => {
+        let invalid = false;
+        try {
+            katex.__parse(value); // eslint-disable-line no-underscore-dangle
+        } catch (e) {
+            invalid = true;
+        } finally {
+            this.setState({
+                invalidTeX: invalid,
+                texValue: value,
+            });
+        }
+    };
 
-  save = () => {
-    const { block, store } = this.props;
+    getValue = () => {
+        const entityKey = this.props.block.getEntityAt(0);
+        const entityData = Entity.get(entityKey).getData();
+        return entityData.content;
+    };
 
-    const entityKey = block.getEntityAt(0);
-    const editorState = store.getEditorState();
+    startEdit = () => {
+        const { block, blockProps } = this.props;
+        blockProps.onStartEdit(block.getKey());
+    };
 
-    Entity.mergeData(entityKey, { content: this.state.texValue });
+    finishEdit = (newContentState) => {
+        const { block, blockProps } = this.props;
+        blockProps.onFinishEdit(block.getKey(), newContentState);
+    };
 
-    this.setState({
-      invalidTeX: false,
-      editMode: false,
-      texValue: null,
-    }, this.finishEdit.bind(this, editorState));
-  };
+    remove = () => {
+        const { block, blockProps } = this.props;
+        blockProps.onRemove(block.getKey());
+    };
 
-  render() {
-    const { theme, doneContent, removeContent } = this.props;
+    save = () => {
+        const { block, store } = this.props;
 
-    let texContent = null;
-    if (this.state.editMode) {
-      if (this.state.invalidTeX) {
-        texContent = '';
-      } else {
-        texContent = this.state.texValue;
-      }
-    } else {
-      texContent = this.getValue();
-    }
+        const entityKey = block.getEntityAt(0);
+        const editorState = store.getEditorState();
 
-    let className = theme.tex;
-    if (this.state.editMode) {
-      className = unionClassNames(className, theme.activeTeX);
-    }
+        Entity.mergeData(entityKey, { content: this.state.texValue });
 
-    let editPanel = null;
-    if (this.state.editMode) {
-      let buttonClass = theme.saveButton;
-      if (this.state.invalidTeX) {
-        buttonClass = unionClassNames(buttonClass, theme.invalidButton);
-      }
+        this.setState({
+            invalidTeX: false,
+            editMode: false,
+            texValue: null,
+        }, this.finishEdit.bind(this, editorState));
+    };
 
-      editPanel = (
-        <div
-          className={theme.panel}
-        >
+    render() {
+        const { theme, doneContent, removeContent } = this.props;
+
+        let texContent = null;
+        if (this.state.editMode) {
+            if (this.state.invalidTeX) {
+                texContent = '';
+            } else {
+                texContent = this.state.texValue;
+            }
+        } else {
+            texContent = this.getValue();
+        }
+
+        let className = theme.tex;
+        if (this.state.editMode) {
+            className = unionClassNames(className, theme.activeTeX);
+        }
+
+        let editPanel = null;
+        if (this.state.editMode) {
+            let buttonClass = theme.saveButton;
+            if (this.state.invalidTeX) {
+                buttonClass = unionClassNames(buttonClass, theme.invalidButton);
+            }
+
+            editPanel = (
+                <div
+                    className={theme.panel}
+                >
           <textarea
-            className={theme.texValue}
-            onChange={this.onValueChange}
-            ref={(textarea) => { this.textarea = textarea; }}
-            value={this.state.texValue}
+              className={theme.texValue}
+              onChange={this.onValueChange}
+              onFocus={this.onFocus}
+              ref={(textarea) => { this.textarea = textarea; }}
+              value={this.state.texValue}
           />
-          <div
-            className={theme.buttons}
-          >
-            <button
-              className={buttonClass}
-              disabled={this.state.invalidTeX}
-              onClick={this.save}
-            >
-              {this.state.invalidTeX ? doneContent.invalid : doneContent.valid}
-            </button>
-            <button
-              className={theme.removeButton}
-              onClick={this.remove}
-            >
-              {removeContent}
-            </button>
-          </div>
-        </div>
-      );
-    }
+                    <div
+                        className={theme.buttons}
+                    >
+                        <button
+                            className={buttonClass}
+                            disabled={this.state.invalidTeX}
+                            onClick={this.save}
+                        >
+                            {this.state.invalidTeX ? doneContent.invalid : doneContent.valid}
+                        </button>
+                        <button
+                            className={theme.removeButton}
+                            onClick={this.remove}
+                        >
+                            {removeContent}
+                        </button>
+                    </div>
+                </div>
+            );
+        }
 
-    return (
-      <div
-        className={className}
-      >
-        <KatexOutput
-          content={texContent}
-          onClick={this.onClick}
-        />
-        {editPanel}
-      </div>
-    );
-  }
+        return (
+            <div
+                className={className}
+            >
+                {this.state.editMode ?
+                    <MathInput value={texContent} callbacks={this.callbacks} onChange={this.onMathInputChange} /> :
+                    <KatexOutput
+                        content={texContent}
+                        onClick={this.onClick}
+                    />
+                }
+                {editPanel}
+            </div>
+        );
+    }
 }
