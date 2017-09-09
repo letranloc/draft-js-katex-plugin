@@ -4,11 +4,14 @@
 
 This plugin insert and render LaTeX using [KaTeX](https://github.com/Khan/KaTeX), modified from [TeX example](https://github.com/facebook/draft-js/tree/master/examples/draft-0-10-0/tex).
 
+- Integrated with [Khan/math-input](https://github.com/Khan/math-input).
+
 ## Usage
 
-Add KaTeX style
+Add MathQuill libs
 ```html
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathquill/0.10.1/mathquill.min.js"></script>
 ```
 
 Add plugin
@@ -19,7 +22,3 @@ const kaTeXPlugin = createKaTeXPlugin();
 
 const { InsertButton } = kaTeXPlugin;
 ```
-
-## TODO
-
-- [ ] Integrate with [Khan/math-input](https://github.com/Khan/math-input).
