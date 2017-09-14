@@ -18,6 +18,7 @@
     "katex": "^0.8.3",
     "react": "^15.4.2",
     "react-addons-css-transition-group": "^15.6.0",
+    "react-addons-pure-render-mixin": "^15.6.0",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "union-class-names": "^1.0.0"
