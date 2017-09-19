@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
+import MathInput from '../src/components/math-input/components/app';
 import {
   Entity,
   EditorState,
@@ -24,7 +24,7 @@ const katexTheme = {
   buttons: 'ButtonGroup',
 };
 
-export function configuredEditor() {
+function configuredEditor() {
   const kaTeXPlugin = createKaTeXPlugin({
     // the configs here are mainly to show you that it is possible. Feel free to use w/o config
     theme: katexTheme,
@@ -67,6 +67,11 @@ export default class ConfiguredEditor extends Component {
 
   render() {
     const { InsertButton } = this;
+    const props = {};
+
+    if (this.props.withMathInput) {
+      props.MathInput = MathInput;
+    }
     return (
       <div style={{ background: '#ccc' }}>
         <h1>Editor:</h1>
