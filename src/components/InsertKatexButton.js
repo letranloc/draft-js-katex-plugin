@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import unionClassNames from 'union-class-names';
 import insertTeXBlock from '../modifiers/insertTeXBlock';
 
@@ -16,13 +17,13 @@ export default class InsertKatexButton extends Component {
 
     render() {
         const { theme = {}, className, children } = this.props;
-        const combinedClassName = unionClassNames(theme.insertButton, className);
+        const combinedClassName = unionClassNames(
+            theme.insertButton,
+            className,
+        );
 
         return (
-            <button
-                className={combinedClassName}
-                onClick={this.onClick}
-            >
+            <button className={combinedClassName} onClick={this.onClick}>
                 {children}
             </button>
         );

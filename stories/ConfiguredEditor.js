@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import MathInput from '../src/components/math-input/components/app';
+import asciimath2latex from 'asciimath-to-latex';
+import insertTeXBlock from '../src/modifiers/insertTeXBlock';
 import {
   Entity,
   EditorState,
@@ -31,6 +34,7 @@ function configuredEditor(props) {
     doneContent: { valid: 'Close', invalid: 'Invalid syntax' },
     removeContent: 'Remove',
     MathInput: props.withMathInput ? MathInput : null,
+    translator: props.withAsciimath ? asciimath2latex : null,
   });
 
   const plugins = [kaTeXPlugin];

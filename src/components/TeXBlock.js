@@ -17,11 +17,10 @@ export default class TeXBlock extends Component {
         if (this.state.editMode || this.props.store.getReadOnly()) {
             return;
         }
-
         this.setState(
             {
                 editMode: true,
-                texValue: this.getValue(),
+                ...this.getValue(),
             },
             () => {
                 this.startEdit();
@@ -40,8 +39,9 @@ export default class TeXBlock extends Component {
         }
     };
 
-    onMathInputChange = value => {
+    onMathInputChange = inputValue => {
         let invalid = false;
+        const value = this.props.translator(inputValue);
         try {
             katex.__parse(value); // eslint-disable-line no-underscore-dangle
         } catch (e) {
@@ -49,7 +49,8 @@ export default class TeXBlock extends Component {
         } finally {
             this.setState({
                 invalidTeX: invalid,
-                texValue: value,
+                value,
+                inputValue,
             });
         }
     };
@@ -57,7 +58,7 @@ export default class TeXBlock extends Component {
     getValue = () => {
         const entityKey = this.props.block.getEntityAt(0);
         const entityData = Entity.get(entityKey).getData();
-        return entityData.content;
+        return entityData;
     };
 
     startEdit = () => {
@@ -81,13 +82,16 @@ export default class TeXBlock extends Component {
         const entityKey = block.getEntityAt(0);
         const editorState = store.getEditorState();
 
-        Entity.mergeData(entityKey, { content: this.state.texValue });
+        Entity.mergeData(entityKey, {
+            value: this.state.value,
+            inputValue: this.state.inputValue,
+        });
 
         this.setState(
             {
                 invalidTeX: false,
                 editMode: false,
-                texValue: null,
+                value: null,
             },
             this.finishEdit.bind(this, editorState),
         );
@@ -101,11 +105,12 @@ export default class TeXBlock extends Component {
             if (this.state.invalidTeX) {
                 texContent = '';
             } else {
-                texContent = this.state.texValue;
+                texContent = this.state.value;
             }
         } else {
-            texContent = this.getValue();
+            texContent = this.getValue().value;
         }
+        const displayMode = this.getValue().displayMode;
 
         let className = theme.tex;
         if (this.state.editMode) {
@@ -128,7 +133,7 @@ export default class TeXBlock extends Component {
                         ref={textarea => {
                             this.textarea = textarea;
                         }}
-                        value={this.state.texValue}
+                        value={this.state.inputValue}
                     />
                     <div className={theme.buttons}>
                         <button
@@ -161,9 +166,14 @@ export default class TeXBlock extends Component {
                         value={texContent}
                         callbacks={this.callbacks}
                         onChange={this.onMathInputChange}
+                        displayMode={displayMode}
                     />
                 ) : (
-                    <KatexOutput value={texContent} onClick={this.onClick} />
+                    <KatexOutput
+                        value={texContent}
+                        onClick={this.onClick}
+                        displayMode={displayMode}
+                    />
                 )}
 
                 {editPanel}

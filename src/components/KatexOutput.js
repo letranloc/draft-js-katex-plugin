@@ -6,9 +6,11 @@ export default class KatexOutput extends React.Component {
     static propTypes = {
         value: PropTypes.string.isRequired,
         displayMode: PropTypes.bool.isRequired,
-        onClick: PropTypes.func.isRequired,
+        onClick: PropTypes.func,
     };
-
+    static defaultProps = {
+        onClick: () => {},
+    };
     constructor(props) {
         super(props);
         this.timer = null;
