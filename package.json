@@ -18,11 +18,14 @@
     "katex": "^0.8.3",
     "react": "^15.4.2",
     "react-addons-css-transition-group": "^15.6.0",
+    "react-addons-pure-render-mixin": "^15.6.0",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "union-class-names": "^1.0.0"
   },
   "devDependencies": {
+    "@storybook/react": "^3.2.8",
+    "asciimath-to-latex": "^0.3.2",
     "autoprefixer": "^6.7.7",
     "babel-cli": "^6.14.0",
     "babel-core": "^6.14.0",
@@ -34,6 +37,7 @@
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-0": "^6.5.0",
     "css-loader": "^0.27.2",
+    "draft-js-plugins-editor": "^2.0.0-beta1",
     "eslint": "^3.5.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",
@@ -84,6 +88,8 @@
     "lint:eslint": "eslint --rule 'mocha/no-exclusive-tests:2' ./",
     "lint:eslint:fix": "eslint --fix --rule 'mocha/no-exclusive-tests:2' ./",
     "lint:staged": "lint-staged",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   }
 }
