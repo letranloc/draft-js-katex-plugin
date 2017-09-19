@@ -6,11 +6,15 @@ import InsertButton from './components/InsertKatexButton';
 
 import styles from './styles.css';
 
+function NoopTranslator (tex) {
+    return tex
+}
 export default (config = {}) => {
     const theme = Object.assign(styles, config.theme || {});
     const insertContent = config.insertContent || 'Ω';
     const doneContent = config.doneContent || { valid: 'Done', invalid: 'Invalid TeX' };
     const removeContent = config.removeContent || 'Remove';
+    const translator = config.translator || NoopTranslator
 
     const store = {
         getEditorState: undefined,
@@ -37,7 +41,7 @@ export default (config = {}) => {
 
                 if (type === 'KateX') {
                     return {
-                        component: decorateComponentWithProps(TeXBlock, { theme, store, doneContent, removeContent }),
+                        component: decorateComponentWithProps(TeXBlock, { theme, store, doneContent, removeContent, translator }),
                         editable: false,
                         props: {
                             onStartEdit: (blockKey) => {

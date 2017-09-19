@@ -15,7 +15,7 @@ const examples = [
     '{1+\\frac{e^{-8\\pi}} {1+\\ldots} } } }',
 ];
 
-export default function insertTeXBlock(editorState, tex) {
+export default function insertTeXBlock(editorState, tex, displayMode = true) {
     let texContent = tex;
     if (!texContent) {
         const nextFormula = count % examples.length;
@@ -23,7 +23,7 @@ export default function insertTeXBlock(editorState, tex) {
         texContent = examples[nextFormula];
     }
 
-    const entityKey = Entity.create('KateX', 'IMMUTABLE', { content: texContent });
+    const entityKey = Entity.create('KateX', 'IMMUTABLE', { content: texContent, displayMode });
     const newEditorState = AtomicBlockUtils.insertAtomicBlock(editorState, entityKey, ' ');
 
     return EditorState.forceSelection(

@@ -31,7 +31,7 @@ export default class KatexOutput extends React.Component {
             katex.render(
                 this.props.content,
                 this.container,
-                { displayMode: true }
+                { this.props.displayMode }
             );
         }, 0);
     }
