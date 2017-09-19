@@ -1,7 +1,14 @@
 import katex from 'katex';
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class KatexOutput extends React.Component {
+    static propTypes = {
+        value: PropTypes.string.isRequired,
+        displayMode: PropTypes.bool.isRequired,
+        onClick: PropTypes.func.isRequired,
+    };
+
     constructor(props) {
         super(props);
         this.timer = null;
@@ -11,8 +18,8 @@ export default class KatexOutput extends React.Component {
         this.update();
     }
 
-    componentWillReceiveProps({ content }) {
-        if (content !== this.props.content) {
+    componentWillReceiveProps({ value }) {
+        if (value !== this.props.value) {
             this.update();
         }
     }
@@ -28,18 +35,18 @@ export default class KatexOutput extends React.Component {
         }
 
         this.timer = setTimeout(() => {
-            katex.render(
-                this.props.content,
-                this.container,
-                { this.props.displayMode }
-            );
+            katex.render(this.props.value, this.container, {
+                displayMode: this.props.displayMode,
+            });
         }, 0);
     }
 
     render() {
         return (
             <div
-                ref={(container) => { this.container = container; }}
+                ref={container => {
+                    this.container = container;
+                }}
                 onClick={this.props.onClick}
             />
         );

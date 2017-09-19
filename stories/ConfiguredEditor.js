@@ -24,12 +24,13 @@ const katexTheme = {
   buttons: 'ButtonGroup',
 };
 
-function configuredEditor() {
+function configuredEditor(props) {
   const kaTeXPlugin = createKaTeXPlugin({
     // the configs here are mainly to show you that it is possible. Feel free to use w/o config
     theme: katexTheme,
     doneContent: { valid: 'Close', invalid: 'Invalid syntax' },
     removeContent: 'Remove',
+    MathInput: props.withMathInput ? MathInput : null,
   });
 
   const plugins = [kaTeXPlugin];
@@ -46,7 +47,7 @@ export default class ConfiguredEditor extends Component {
 
   constructor(props) {
     super(props);
-    const { baseEditorProps, InsertButton } = configuredEditor();
+    const { baseEditorProps, InsertButton } = configuredEditor(props);
     this.baseEditorProps = baseEditorProps;
     this.InsertButton = InsertButton;
     this.state = { editorState: EditorState.createEmpty() };
@@ -69,9 +70,6 @@ export default class ConfiguredEditor extends Component {
     const { InsertButton } = this;
     const props = {};
 
-    if (this.props.withMathInput) {
-      props.MathInput = MathInput;
-    }
     return (
       <div style={{ background: '#ccc' }}>
         <h1>Editor:</h1>

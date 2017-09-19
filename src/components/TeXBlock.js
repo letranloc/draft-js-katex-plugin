@@ -3,12 +3,12 @@ import katex from 'katex';
 import { Entity } from 'draft-js';
 import unionClassNames from 'union-class-names';
 import KatexOutput from './KatexOutput';
-import MathInput from './math-input/components/app';
+//import MathInput from './math-input/components/app';
 
 export default class TeXBlock extends Component {
     constructor(props) {
         super(props);
-        this.state = { editMode: false }
+        this.state = { editMode: false };
     }
 
     callbacks = {};
@@ -18,15 +18,18 @@ export default class TeXBlock extends Component {
             return;
         }
 
-        this.setState({
-            editMode: true,
-            texValue: this.getValue(),
-        }, () => {
-            this.startEdit();
-        });
+        this.setState(
+            {
+                editMode: true,
+                texValue: this.getValue(),
+            },
+            () => {
+                this.startEdit();
+            },
+        );
     };
 
-    onValueChange = (evt) => {
+    onValueChange = evt => {
         const value = evt.target.value;
         this.onMathInputChange(value);
     };
@@ -37,7 +40,7 @@ export default class TeXBlock extends Component {
         }
     };
 
-    onMathInputChange = (value) => {
+    onMathInputChange = value => {
         let invalid = false;
         try {
             katex.__parse(value); // eslint-disable-line no-underscore-dangle
@@ -62,7 +65,7 @@ export default class TeXBlock extends Component {
         blockProps.onStartEdit(block.getKey());
     };
 
-    finishEdit = (newContentState) => {
+    finishEdit = newContentState => {
         const { block, blockProps } = this.props;
         blockProps.onFinishEdit(block.getKey(), newContentState);
     };
@@ -80,11 +83,14 @@ export default class TeXBlock extends Component {
 
         Entity.mergeData(entityKey, { content: this.state.texValue });
 
-        this.setState({
-            invalidTeX: false,
-            editMode: false,
-            texValue: null,
-        }, this.finishEdit.bind(this, editorState));
+        this.setState(
+            {
+                invalidTeX: false,
+                editMode: false,
+                texValue: null,
+            },
+            this.finishEdit.bind(this, editorState),
+        );
     };
 
     render() {
@@ -114,25 +120,27 @@ export default class TeXBlock extends Component {
             }
 
             editPanel = (
-                <div
-                    className={theme.panel}
-                >
-          <textarea
-              className={theme.texValue}
-              onChange={this.onValueChange}
-              onFocus={this.onFocus}
-              ref={(textarea) => { this.textarea = textarea; }}
-              value={this.state.texValue}
-          />
-                    <div
-                        className={theme.buttons}
-                    >
+                <div className={theme.panel}>
+                    <textarea
+                        className={theme.texValue}
+                        onChange={this.onValueChange}
+                        onFocus={this.onFocus}
+                        ref={textarea => {
+                            this.textarea = textarea;
+                        }}
+                        value={this.state.texValue}
+                    />
+                    <div className={theme.buttons}>
                         <button
                             className={buttonClass}
                             disabled={this.state.invalidTeX}
                             onClick={this.save}
                         >
-                            {this.state.invalidTeX ? doneContent.invalid : doneContent.valid}
+                            {this.state.invalidTeX ? (
+                                doneContent.invalid
+                            ) : (
+                                doneContent.valid
+                            )}
                         </button>
                         <button
                             className={theme.removeButton}
@@ -145,17 +153,19 @@ export default class TeXBlock extends Component {
             );
         }
 
+        const MathInput = this.props.MathInput || KatexOutput;
         return (
-            <div
-                className={className}
-            >
-                {this.state.editMode ?
-                    <MathInput value={texContent} callbacks={this.callbacks} onChange={this.onMathInputChange} /> :
-                    <KatexOutput
-                        content={texContent}
-                        onClick={this.onClick}
+            <div className={className}>
+                {this.state.editMode ? (
+                    <MathInput
+                        value={texContent}
+                        callbacks={this.callbacks}
+                        onChange={this.onMathInputChange}
                     />
-                }
+                ) : (
+                    <KatexOutput value={texContent} onClick={this.onClick} />
+                )}
+
                 {editPanel}
             </div>
         );
