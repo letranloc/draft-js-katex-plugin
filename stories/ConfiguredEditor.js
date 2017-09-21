@@ -1,24 +1,12 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-
-import MathInput from '../src/components/math-input/components/app';
 import asciimath2latex from 'asciimath-to-latex';
+import { EditorState } from 'draft-js';
+
+import Editor from 'draft-js-plugins-editor';
+
 import insertTeXBlock from '../src/modifiers/insertTeXBlock';
-import {
-  Entity,
-  EditorState,
-  ContentState,
-  convertFromRaw,
-  convertToRaw,
-  DefaultDraftBlockRenderMap,
-  AtomicBlockUtils,
-} from 'draft-js';
-
-import Editor, { composeDecorators } from 'draft-js-plugins-editor';
-
-import { Map } from 'immutable';
-
-import createKaTeXPlugin from '../src/index.js';
+import MathInput from '../src/components/math-input/components/app';
+import createKaTeXPlugin from '../src/index';
 
 const katexTheme = {
   saveButton: 'Button Button-small Button-main',
@@ -72,7 +60,6 @@ export default class ConfiguredEditor extends Component {
 
   render() {
     const { InsertButton } = this;
-    const props = {};
 
     return (
       <div style={{ background: '#ccc' }}>
@@ -80,6 +67,8 @@ export default class ConfiguredEditor extends Component {
         <div style={{ border: '#ccc 1px solid' }}>
           <div>
             <InsertButton />
+            Insert ascii:
+            <InsertButton initialValue="int(s-x)^3">f(x)</InsertButton>
           </div>
           <Editor
             plugins={this.baseEditorProps.plugins}
