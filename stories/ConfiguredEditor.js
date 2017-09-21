@@ -4,7 +4,6 @@ import { EditorState } from 'draft-js';
 
 import Editor from 'draft-js-plugins-editor';
 
-import insertTeXBlock from '../src/modifiers/insertTeXBlock';
 import MathInput from '../src/components/math-input/components/app';
 import createKaTeXPlugin from '../src/index';
 
@@ -68,7 +67,7 @@ export default class ConfiguredEditor extends Component {
           <div>
             <InsertButton />
             Insert ascii:
-            <InsertButton initialValue="int(s-x)^3">f(x)</InsertButton>
+            <InsertButton initialValue="int(s-x)^3">Insert ascii math</InsertButton>
           </div>
           <Editor
             plugins={this.baseEditorProps.plugins}

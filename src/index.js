@@ -83,7 +83,7 @@ export default (config = {}) => {
       theme,
       store,
       translator,
-      children: insertContent,
+      defaultContent: insertContent,
     }),
   };
 };
