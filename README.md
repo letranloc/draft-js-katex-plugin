@@ -64,3 +64,58 @@ Here shown with defaults:
     translator: null, 
 }
 ```
+
+
+## Loading katex async
+If you want to load katex in the background instead of right away, then you can do this by wrapping the katex object that you pass into the plugin:
+
+```js
+//file: asyncKatex.js
+let katex = null
+const renderQueue = []
+
+System.import(/* webpackChunkName: 'katex' */ 'katex')
+  .then(function methodName(module) {
+    katex = module.default
+  })
+  .then(() => {
+    console.log('Katex loaded, ', renderQueue)
+    if (renderQueue.length) {
+      const now = Date.now()
+      renderQueue.map(([d, expression, baseNode, options]) => {
+        if (now - d < 4000) {
+          katex.render(expression, baseNode, options)
+        }
+      })
+    }
+  })
+
+export default {
+  render: (expression, baseNode, options) => {
+    if (katex) {
+      return katex.render(expression, baseNode, options)
+    }
+
+    renderQueue.push([Date.now(), expression, baseNode, options])
+  },
+  // parse is only used by this plugin to check syntax validity.
+  __parse: (expression, options) => {
+    if (katex) {
+      return katex.parse(expression, options)
+    }
+    return null
+  }
+}
+
+
+```
+
+Store this in a separate file and and pass it to the plugin config:
+
+```js
+import createKaTeXPlugin from 'draft-js-katex-plugin';
+import katex from './asyncKatex'
+
+const kaTeXPlugin = createKaTeXPlugin({katex});
+
+```
