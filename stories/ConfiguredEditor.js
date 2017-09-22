@@ -6,6 +6,9 @@ import Editor from 'draft-js-plugins-editor';
 
 import MathInput from '../src/components/math-input/components/app';
 import createKaTeXPlugin from '../src/index';
+import '../src/styles.css';
+
+import katex from '../src/katex';
 
 const katexTheme = {
   saveButton: 'Button Button-small Button-main',
@@ -17,10 +20,11 @@ const katexTheme = {
 function configuredEditor(props) {
   const kaTeXPlugin = createKaTeXPlugin({
     // the configs here are mainly to show you that it is possible. Feel free to use w/o config
-    theme: katexTheme,
     doneContent: { valid: 'Close', invalid: 'Invalid syntax' },
-    removeContent: 'Remove',
+    katex, // <-- required
     MathInput: props.withMathInput ? MathInput : null,
+    removeContent: 'Remove',
+    theme: katexTheme,
     translator: props.withAsciimath ? asciimath2latex : null,
   });
 

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import katex from 'katex';
 import { Entity } from 'draft-js';
 import unionClassNames from 'union-class-names';
 import KatexOutput from './KatexOutput';
@@ -43,7 +42,7 @@ export default class TeXBlock extends Component {
     let invalid = false;
     const value = this.props.translator(inputValue);
     try {
-      katex.__parse(value); // eslint-disable-line no-underscore-dangle
+      this.props.katex.__parse(value); // eslint-disable-line no-underscore-dangle
     } catch (e) {
       invalid = true;
     } finally {
@@ -98,7 +97,7 @@ export default class TeXBlock extends Component {
   };
 
   render() {
-    const { theme, doneContent, removeContent } = this.props;
+    const { theme, doneContent, removeContent, katex } = this.props;
 
     let texContent = null;
     if (this.state.editMode) {
@@ -152,13 +151,14 @@ export default class TeXBlock extends Component {
       <div className={className}>
         {this.state.editMode ? (
           <MathInput
-            value={texContent}
             callbacks={this.callbacks}
-            onChange={this.onMathInputChange}
             displayMode={displayMode}
+            katex={katex}
+            onChange={this.onMathInputChange}
+            value={texContent}
           />
         ) : (
-          <KatexOutput value={texContent} onClick={this.onClick} displayMode={displayMode} />
+          <KatexOutput katex={katex} value={texContent} onClick={this.onClick} displayMode={displayMode} />
         )}
 
         {editPanel}

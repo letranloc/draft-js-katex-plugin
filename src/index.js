@@ -19,6 +19,11 @@ export default (config = {}) => {
   };
   const removeContent = config.removeContent || 'Remove';
   const translator = config.translator || noopTranslator;
+  const katex = config.katex;
+
+  if (!katex || !katex.render) {
+    throw new Error('Invalid katex plugin provided!');
+  }
 
   const store = {
     getEditorState: undefined,
@@ -50,6 +55,7 @@ export default (config = {}) => {
               doneContent,
               removeContent,
               translator,
+              katex,
               MathInput: config.MathInput,
             }),
             editable: false,

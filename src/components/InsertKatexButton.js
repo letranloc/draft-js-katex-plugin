@@ -5,13 +5,13 @@ import insertTeXBlock from '../modifiers/insertTeXBlock';
 
 export default class InsertKatexButton extends Component {
   static propTypes = {
-    children: PropTypes.node.isRequired,
+    children: PropTypes.node,
     initialValue: PropTypes.string,
     translator: PropTypes.func.isRequired,
     theme: PropTypes.any,
   };
   static defaultProps = {
-    initialValue: false,
+    initialValue: null,
     tex: null,
   };
 

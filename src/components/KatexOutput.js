@@ -1,10 +1,10 @@
-import katex from 'katex';
 import React from 'react';
 import PropTypes from 'prop-types';
 
 export default class KatexOutput extends React.Component {
   static propTypes = {
     value: PropTypes.string.isRequired,
+    katex: PropTypes.object.isRequired,
     displayMode: PropTypes.bool.isRequired,
     onClick: PropTypes.func,
   };
@@ -31,7 +31,8 @@ export default class KatexOutput extends React.Component {
     this.timer = null;
   }
 
-  update() {
+  update = () => {
+    const { katex } = this.props;
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -41,7 +42,7 @@ export default class KatexOutput extends React.Component {
         displayMode: this.props.displayMode,
       });
     }, 0);
-  }
+  };
 
   render() {
     return (
