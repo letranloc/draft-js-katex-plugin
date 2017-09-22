@@ -1,4 +1,4 @@
-import { EditorState, Entity } from 'draft-js';
+import { EditorState } from 'draft-js';
 import decorateComponentWithProps from 'decorate-component-with-props';
 import TeXBlock from './components/TeXBlock';
 import removeTeXBlock from './modifiers/removeTeXBlock';
@@ -44,7 +44,10 @@ export default (config = {}) => {
 
     blockRendererFn: block => {
       if (block.getType() === 'atomic') {
-        const entity = Entity.get(block.getEntityAt(0));
+        const entity = store
+          .getEditorState()
+          .getCurrentContent()
+          .getEntity(block.getEntityAt(0));
         const type = entity.getType();
 
         if (type === 'KateX') {

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Entity } from 'draft-js';
 import unionClassNames from 'union-class-names';
 import KatexOutput from './KatexOutput';
 //import MathInput from './math-input/components/app';
@@ -55,8 +54,8 @@ export default class TeXBlock extends Component {
   };
 
   getValue = () => {
-    const entityKey = this.props.block.getEntityAt(0);
-    const entityData = Entity.get(entityKey).getData();
+    const contentState = this.props.store.getEditorState().getCurrentContent();
+    const entityData = contentState.getEntity(this.props.block.getEntityAt(0)).getData();
     return entityData;
   };
 
@@ -81,7 +80,9 @@ export default class TeXBlock extends Component {
     const entityKey = block.getEntityAt(0);
     const editorState = store.getEditorState();
 
-    Entity.mergeData(entityKey, {
+    const contentState = editorState.getCurrentContent();
+
+    const newContentState = contentState.mergeEntityData(entityKey, {
       value: this.state.value,
       inputValue: this.state.inputValue,
     });
