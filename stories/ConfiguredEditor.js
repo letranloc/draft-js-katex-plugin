@@ -11,10 +11,7 @@ import '../src/styles.css';
 import katex from '../src/katex';
 
 const katexTheme = {
-  saveButton: 'Button Button-small Button-main',
-  removeButton: 'Button Button-small Button-main',
-  invalidButton: 'Button-small Button-alert',
-  buttons: 'ButtonGroup',
+  insertButton: 'Button Button-small Button-insert',
 };
 
 function configuredEditor(props) {
@@ -65,23 +62,18 @@ export default class ConfiguredEditor extends Component {
     const { InsertButton } = this;
 
     return (
-      <div style={{ background: '#ccc' }}>
+      <div>
         <h1>Editor:</h1>
-        <div style={{ border: '#ccc 1px solid' }}>
-          <div>
-            <InsertButton />
-            Insert ascii:
-            <InsertButton initialValue="int(s-x)^3">Insert ascii math</InsertButton>
-          </div>
-          <Editor
-            plugins={this.baseEditorProps.plugins}
-            ref={element => {
-              this.editor = element;
-            }}
-            editorState={this.state.editorState}
-            onChange={this.onEditorStateChange}
-          />
+        <div style={{ border: '#ccc 1px solid', background: '#ccc', padding: 10 }}>
+          <InsertButton />
+          <InsertButton initialValue="int(s-x)^3">Insert ascii math</InsertButton>
         </div>
+        <Editor
+          plugins={this.baseEditorProps.plugins}
+          ref={element => this.editor = element }
+          editorState={this.state.editorState}
+          onChange={this.onEditorStateChange}
+        />
       </div>
     );
   }

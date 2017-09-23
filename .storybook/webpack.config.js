@@ -22,8 +22,19 @@ module.exports = {
       */
       {
         test: /\.css$/,
-        loaders: ['style-loader', 'css-loader', 'postcss-loader'],
-        include: path.resolve(__dirname, '../'),
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              importLoaders: 1,
+              localIdentName: 'draftJsKatexPlugin__[local]__[hash:base64:5]',
+            },
+          },
+        ],
       },
     ],
     /*
