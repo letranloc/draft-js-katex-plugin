@@ -4,7 +4,7 @@
 node_modules
 
 # sources
-/src/
+/draft-js-katex-plugin/src.bak/
 webpack.config.js
 .babelrc
 .gitignore
