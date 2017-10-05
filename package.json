@@ -81,14 +81,16 @@
   "scripts": {
     "build": "npm run clean && npm run build:js && npm run build:css",
     "build:css": "node ./scripts/concatCssFiles $(pwd) && rimraf lib-css",
-    "build:js": "WEBPACK_CONFIG=$(pwd)/webpack.config.js BABEL_DISABLE_CACHE=1 BABEL_ENV=production NODE_ENV=production babel --out-dir='lib' --ignore='__test__/*' src",
-    "clean": "rimraf lib",
+    "build:js":
+      "WEBPACK_CONFIG=$(pwd)/webpack.config.js BABEL_DISABLE_CACHE=1 BABEL_ENV=production NODE_ENV=production babel --out-dir='lib' --ignore='__test__/*' src",
+    "clean": "rimraf lib storybook-static",
     "lint": "npm run lint:eslint",
     "lint:eslint": "eslint --rule 'mocha/no-exclusive-tests:2' ./",
     "lint:eslint:fix": "eslint --fix --rule 'mocha/no-exclusive-tests:2' ./",
     "lint:staged": "lint-staged",
     "prepublish": "npm run build",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook":
+      "WEBPACK_CONFIG=$(pwd)/webpack.config.draft-js BABEL_DISABLE_CACHE=1 build-storybook -c .storybook -o storybook-static"
   }
 }
