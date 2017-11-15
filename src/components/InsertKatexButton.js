@@ -27,7 +27,7 @@ export default class InsertKatexButton extends Component {
     const content = Children.count(children) ? children : defaultContent;
 
     return (
-      <button className={combinedClassName} onClick={this.onClick}>
+      <button className={combinedClassName} onClick={this.onClick} type="button">
         {content}
       </button>
     );
