@@ -63,7 +63,7 @@ export default class ConfiguredEditor extends Component {
 
     return (
       <div>
-        <h1>Editor:</h1>
+        <h1>DraftJS KaTeX Plugin</h1>
         <div style={{ border: '#ccc 1px solid', background: '#ccc', padding: 10 }}>
           <InsertButton />
           <InsertButton initialValue="int(s-x)^3">Insert ascii math</InsertButton>

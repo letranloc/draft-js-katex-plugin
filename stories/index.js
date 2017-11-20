@@ -1,15 +1,8 @@
 import React from 'react';
 
 import { storiesOf } from '@storybook/react';
-import { linkTo } from '@storybook/addon-links';
-
-import Welcome from './Welcome';
 
 import ConfiguredEditor from './ConfiguredEditor';
-
-storiesOf('Katex editor', module).add('to Storybook', () => (
-  <Welcome showApp={linkTo('Button')} />
-));
 
 storiesOf('Katex editor', module)
   .add('Without mathinput', () => (
