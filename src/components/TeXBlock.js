@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import unionClassNames from 'union-class-names';
 import KatexOutput from './KatexOutput';
-//import MathInput from './math-input/components/app';
 
 export default class TeXBlock extends Component {
   constructor(props) {
     super(props);
     this.state = { editMode: false };
   }
-
-  callbacks = {};
 
   onClick = () => {
     if (this.state.editMode || this.props.store.getReadOnly()) {
@@ -55,9 +52,10 @@ export default class TeXBlock extends Component {
 
   getValue = () => {
     const contentState = this.props.store.getEditorState().getCurrentContent();
-    const entityData = contentState.getEntity(this.props.block.getEntityAt(0)).getData();
-    return entityData;
+    return contentState.getEntity(this.props.block.getEntityAt(0)).getData();
   };
+
+  callbacks = {};
 
   startEdit = () => {
     const { block, blockProps } = this.props;
@@ -82,7 +80,7 @@ export default class TeXBlock extends Component {
 
     const contentState = editorState.getCurrentContent();
 
-    const newContentState = contentState.mergeEntityData(entityKey, {
+    contentState.mergeEntityData(entityKey, {
       value: this.state.value,
       inputValue: this.state.inputValue,
     });
@@ -130,9 +128,6 @@ export default class TeXBlock extends Component {
             className={theme.texValue}
             onChange={this.onValueChange}
             onFocus={this.onFocus}
-            ref={textarea => {
-              this.textarea = textarea;
-            }}
             value={this.state.inputValue}
           />
           <div className={theme.buttons}>

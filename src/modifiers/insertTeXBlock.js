@@ -7,8 +7,8 @@ const examples = [
   'P(E) = \\binom{n}{k} p^k (1-p)^{ n-k}',
 
   '\\frac{1}{(\\sqrt{\\phi \\sqrt{5}}-\\phi) e^{\\frac25 \\pi}} =\n' +
-    '1+\\frac{e^{-2\\pi}} {1+\\frac{e^{-4\\pi}} {1+\\frac{e^{-6\\pi}}\n' +
-    '{1+\\frac{e^{-8\\pi}} {1+\\ldots} } } }',
+  '1+\\frac{e^{-2\\pi}} {1+\\frac{e^{-4\\pi}} {1+\\frac{e^{-6\\pi}}\n' +
+  '{1+\\frac{e^{-8\\pi}} {1+\\ldots} } } }',
 ];
 
 export default function insertTeXBlock(editorState, translator, tex, displayMode = true) {

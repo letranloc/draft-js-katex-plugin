@@ -9,8 +9,10 @@ export default class KatexOutput extends React.Component {
     onClick: PropTypes.func,
   };
   static defaultProps = {
-    onClick: () => {},
+    onClick: () => {
+    },
   };
+
   constructor(props) {
     super(props);
     this.timer = null;

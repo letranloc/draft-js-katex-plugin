@@ -10,9 +10,12 @@ export default class InsertKatexButton extends Component {
     translator: PropTypes.func.isRequired,
     theme: PropTypes.any,
   };
+
   static defaultProps = {
     initialValue: null,
     tex: null,
+    theme: null,
+    children: null
   };
 
   onClick = () => {

@@ -4,7 +4,7 @@ import { EditorState } from 'draft-js';
 
 import Editor from 'draft-js-plugins-editor';
 
-import MathInput from '../src/components/math-input/components/app';
+import MathInput from 'math-input/dist/components/app';
 import createKaTeXPlugin from '../src/index';
 import '../src/styles.css';
 
@@ -70,7 +70,7 @@ export default class ConfiguredEditor extends Component {
         </div>
         <Editor
           plugins={this.baseEditorProps.plugins}
-          ref={element => this.editor = element }
+          ref={element => this.editor = element}
           editorState={this.state.editorState}
           onChange={this.onEditorStateChange}
         />

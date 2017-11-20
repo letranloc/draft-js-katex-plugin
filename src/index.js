@@ -10,8 +10,20 @@ function noopTranslator(tex) {
   return tex;
 }
 
+const defaultTheme = {
+  tex: styles.tex,
+  activeTex: styles.activeTeX,
+  panel: styles.panel,
+  texValue: styles.texValue,
+  buttons: styles.buttons,
+  saveButton: styles.saveButton,
+  removeButton: styles.removeButton,
+  invalidButton: styles.invalidButton,
+  insertButton: styles.insertButton
+};
+
 export default (config = {}) => {
-  const theme = Object.assign(styles, config.theme || {});
+  const theme = Object.assign(defaultTheme, config.theme || {});
   const insertContent = config.insertContent || 'Ω';
   const doneContent = config.doneContent || {
     valid: 'Done',
