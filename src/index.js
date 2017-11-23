@@ -46,6 +46,17 @@ export default (config = {}) => {
   };
 
   const liveTeXEdits = new Map();
+
+  const component = decorateComponentWithProps(TeXBlock, {
+    theme,
+    store,
+    doneContent,
+    removeContent,
+    translator,
+    katex,
+    MathInput: config.MathInput,
+  });
+
   return {
     initialize: ({ getEditorState, setEditorState, getReadOnly, setReadOnly }) => {
       store.getEditorState = getEditorState;
@@ -64,15 +75,7 @@ export default (config = {}) => {
 
         if (type === 'KateX') {
           return {
-            component: decorateComponentWithProps(TeXBlock, {
-              theme,
-              store,
-              doneContent,
-              removeContent,
-              translator,
-              katex,
-              MathInput: config.MathInput,
-            }),
+            component,
             editable: false,
             props: {
               onStartEdit: blockKey => {
