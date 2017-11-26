@@ -6,6 +6,8 @@ This plugin insert and render LaTeX using [KaTeX](https://github.com/Khan/KaTeX)
 
 - Integrated with [Khan/math-input](https://github.com/Khan/math-input).
 
+[![NPM](https://nodei.co/npm/draft-js-katex-plugin.png?downloads=true)](https://www.npmjs.com/package/draft-js-katex-plugin)
+
 ## Usage
 
 Add MathQuill libs if you want to use MathInput:
