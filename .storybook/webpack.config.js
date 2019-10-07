@@ -5,7 +5,7 @@
 // IMPORTANT
 // When you add this file, we won't add the default configurations which is similar
 // to "React Create App". This only has babel loader to load JavaScript.
-const path = require('path');
+const path = require("path");
 
 module.exports = {
   plugins: [
@@ -24,19 +24,19 @@ module.exports = {
         test: /\.css$/,
         use: [
           {
-            loader: 'style-loader',
+            loader: "style-loader"
           },
           {
-            loader: 'css-loader',
+            loader: "css-loader",
             options: {
               modules: true,
-              importLoaders: 1,
-              localIdentName: 'draftJsKatexPlugin__[local]__[hash:base64:5]',
-            },
-          },
-        ],
-      },
-    ],
+              importLoaders: 1
+              //    localIdentName: 'draftJsKatexPlugin__[local]__[hash:base64:5]',
+            }
+          }
+        ]
+      }
+    ]
     /*
     loaders: [
 
@@ -58,5 +58,5 @@ module.exports = {
       ]
     }]
     */
-  },
+  }
 };

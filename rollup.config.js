@@ -37,7 +37,7 @@ const configureRollupPlugins = (options = {}) =>
     }),
     postcss({
       extract: true, // extracts to `${basename(dest)}.css`
-      plugins: [autoprefixer()],
+      plugins: [autoprefixer],
       writeDefinitions: true
       // modules: { ... }
     }),

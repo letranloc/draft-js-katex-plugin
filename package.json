@@ -16,10 +16,12 @@
     "react-dom": "^16.8.0"
   },
   "dependencies": {
+    "decorate-component-with-props": "^1.1.0",
     "jquery": "^3.2.1",
     "katex": "^0.11.1",
     "math-input": "github:letranloc/math-input#web-support",
-    "mathquill": "^0.10.1-a"
+    "mathquill": "^0.10.1-a",
+    "union-class-names": "^1.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.2",
@@ -30,7 +32,14 @@
     "@storybook/react": "^5.2.1",
     "asciimath-to-latex": "^0.3.2",
     "autoprefixer": "^9.6.4",
+    "babel-loader": "^8.0.6",
+    "draft-js": "^0.11.1",
     "draft-js-plugins-editor": "3.0.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.10.2",
+    "react-addons-css-transition-group": "^15.6.2",
+    "react-addons-pure-render-mixin": "^15.6.2",
+    "react-dom": "^16.10.2",
     "rimraf": "^3.0.0",
     "rollup": "^1.23.1",
     "rollup-plugin-babel": "^4.3.3",
@@ -77,5 +86,10 @@
     "prepublish": "npm run build",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "WEBPACK_CONFIG=$(pwd)/webpack.config.js BABEL_DISABLE_CACHE=1 build-storybook -c .storybook -o storybook-static"
-  }
+  },
+  "browserslist": [
+    "last 1 version",
+    "> 1%",
+    "not dead"
+  ]
 }
