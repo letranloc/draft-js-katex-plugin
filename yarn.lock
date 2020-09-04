@@ -265,6 +265,13 @@ anymatch@^1.3.0:
     arrify "^1.0.0"
     micromatch "^2.1.5"
 
+aphrodite@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/aphrodite/-/aphrodite-0.2.0.tgz#0f9314ce6c23891b7648d14951e233f38ff88eeb"
+  dependencies:
+    asap "^2.0.3"
+    inline-style-prefixer "github:khan/inline-style-prefixer#f41f3040ac27eeec3b7a1fb7450ddce250cac4e4"
+
 aphrodite@^1.2.3:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/aphrodite/-/aphrodite-1.2.3.tgz#4b161e9eef319b1f90a889501f985d7b5e70b285"
@@ -2492,6 +2499,14 @@ create-hmac@^1.1.0, create-hmac@^1.1.2:
     create-hash "^1.1.0"
     inherits "^2.0.1"
 
+create-react-class@^15.5.1:
+  version "15.6.3"
+  resolved "https://registry.yarnpkg.com/create-react-class/-/create-react-class-15.6.3.tgz#2d73237fb3f970ae6ebe011a9e66f46dbca80036"
+  dependencies:
+    fbjs "^0.8.9"
+    loose-envify "^1.3.1"
+    object-assign "^4.1.1"
+
 create-react-class@^15.6.0:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/create-react-class/-/create-react-class-15.6.2.tgz#cf1ed15f12aad7f14ef5f2dfe05e6c42f91ef02a"
@@ -3829,6 +3844,12 @@ hoist-non-react-statics@^2.2.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.3.1.tgz#343db84c6018c650778898240135a1420ee22ce0"
 
+hoist-non-react-statics@^3.3.0:
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.2.tgz#ece0acaf71d62c2969c2ec59feff42a4b1a85b45"
+  dependencies:
+    react-is "^16.7.0"
+
 home-or-tmp@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/home-or-tmp/-/home-or-tmp-2.0.0.tgz#e36c3f2d2cae7d746a857e38d18d5f32a7882db8"
@@ -3995,6 +4016,13 @@ inline-style-prefixer@^3.0.6:
   dependencies:
     bowser "^1.7.3"
     css-in-js-utils "^2.0.0"
+
+"inline-style-prefixer@github:khan/inline-style-prefixer#f41f3040ac27eeec3b7a1fb7450ddce250cac4e4":
+  version "0.6.7"
+  uid f41f3040ac27eeec3b7a1fb7450ddce250cac4e4
+  resolved "https://codeload.github.com/khan/inline-style-prefixer/tar.gz/f41f3040ac27eeec3b7a1fb7450ddce250cac4e4"
+  dependencies:
+    bowser "^1.0.0"
 
 inquirer@^0.12.0:
   version "0.12.0"
@@ -4246,6 +4274,10 @@ jodid25519@^1.0.0:
   dependencies:
     jsbn "~0.1.0"
 
+jquery@^1.12.2, jquery@^1.12.3:
+  version "1.12.4"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-1.12.4.tgz#01e1dfba290fe73deba77ceeacb0f9ba2fec9e0c"
+
 jquery@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.2.1.tgz#5c4d9de652af6cd0a770154a631bba12b015c787"
@@ -4257,6 +4289,10 @@ js-base64@^2.1.9:
 js-tokens@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.1.tgz#08e9f132484a2c45a30907e9dc4d5567b7f114d7"
+
+"js-tokens@^3.0.0 || ^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
 
 js-tokens@^3.0.2:
   version "3.0.2"
@@ -4345,6 +4381,12 @@ katex@^0.8.3:
   resolved "https://registry.yarnpkg.com/katex/-/katex-0.8.3.tgz#909d99864baf964c3ccae39c4a99a8e0fb9a1bd0"
   dependencies:
     match-at "^0.1.0"
+
+katex@^0.9.0-alpha1:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/katex/-/katex-0.9.0.tgz#26a7d082c21d53725422d2d71da9b2d8455fbd4a"
+  dependencies:
+    match-at "^0.1.1"
 
 keycode@^2.1.8:
   version "2.1.9"
@@ -4563,8 +4605,8 @@ lodash.memoize@^4.1.0:
   resolved "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
 
 lodash.merge@^4.4.0:
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.0.tgz#69884ba144ac33fe699737a6086deffadd0f89c5"
+  version "4.6.2"
+  resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.2.tgz#558aa53b43b661e1925a0afdfa36a9a1085fe57a"
 
 lodash.pick@^4.2.1, lodash.pick@^4.4.0:
   version "4.4.0"
@@ -4602,6 +4644,10 @@ lodash@^3.10.1:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
 
+lodash@^4.17.11:
+  version "4.17.20"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
+
 log-symbols@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/log-symbols/-/log-symbols-1.0.2.tgz#376ff7b58ea3086a0f09facc74617eca501e1a18"
@@ -4624,6 +4670,12 @@ loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.3.1:
   resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.3.1.tgz#d1a8ad33fa9ce0e713d65fdd0ac8b748d478c848"
   dependencies:
     js-tokens "^3.0.0"
+
+loose-envify@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
+  dependencies:
+    js-tokens "^3.0.0 || ^4.0.0"
 
 lru-cache@^4.0.1:
   version "4.0.2"
@@ -4654,9 +4706,38 @@ match-at@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/match-at/-/match-at-0.1.0.tgz#f561e7709ff9a105b85cc62c6b8ee7c15bf24f31"
 
+match-at@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/match-at/-/match-at-0.1.1.tgz#25d040d291777704d5e6556bbb79230ec2de0540"
+
 math-expression-evaluator@^1.2.14:
   version "1.2.16"
   resolved "https://registry.yarnpkg.com/math-expression-evaluator/-/math-expression-evaluator-1.2.16.tgz#b357fa1ca9faefb8e48d10c14ef2bcb2d9f0a7c9"
+
+"math-input@github:letranloc/math-input#web-support":
+  version "0.0.1"
+  uid d1c10e0835ddac1b8273d1b4c0c67dd7b4d67b07
+  resolved "https://codeload.github.com/letranloc/math-input/tar.gz/d1c10e0835ddac1b8273d1b4c0c67dd7b4d67b07"
+  dependencies:
+    aphrodite "^0.2.0"
+    jquery "^1.12.2"
+    katex "^0.9.0-alpha1"
+    mathquill "^0.10.1"
+    performance-now "^0.2.0"
+    react-redux "^4.4.5"
+    redux "^3.5.0"
+
+mathquill@^0.10.1:
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/mathquill/-/mathquill-0.10.1.tgz#3bf75025609a75b9bd8b8ee2196c04957f4737d2"
+  dependencies:
+    jquery "^1.12.3"
+
+mathquill@^0.10.1-a:
+  version "0.10.1-a"
+  resolved "https://registry.yarnpkg.com/mathquill/-/mathquill-0.10.1-a.tgz#bf2ca569010063ac34bcd5d529adc0837cd53c3f"
+  dependencies:
+    jquery "^1.12.3"
 
 media-typer@0.3.0:
   version "0.3.0"
@@ -5597,6 +5678,14 @@ prop-types@^15.6.0:
     loose-envify "^1.3.1"
     object-assign "^4.1.1"
 
+prop-types@^15.7.2:
+  version "15.7.2"
+  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
+  dependencies:
+    loose-envify "^1.4.0"
+    object-assign "^4.1.1"
+    react-is "^16.8.1"
+
 proxy-addr@~2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/proxy-addr/-/proxy-addr-2.0.2.tgz#6571504f47bb988ec8180253f85dd7e14952bdec"
@@ -5762,6 +5851,10 @@ react-inspector@^2.2.0:
     babel-runtime "^6.26.0"
     is-dom "^1.0.9"
 
+react-is@^16.7.0, react-is@^16.8.1:
+  version "16.13.1"
+  resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
+
 react-komposer@^1.9.0:
   version "1.13.1"
   resolved "https://registry.yarnpkg.com/react-komposer/-/react-komposer-1.13.1.tgz#4b8ac4bcc71323bd7413dcab95c831197f50eed0"
@@ -5788,6 +5881,17 @@ react-modal@^2.3.2:
   dependencies:
     exenv "^1.2.0"
     prop-types "^15.5.10"
+
+react-redux@^4.4.5:
+  version "4.4.10"
+  resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-4.4.10.tgz#ad57bd1db00c2d0aa7db992b360ce63dd0b80ec5"
+  dependencies:
+    create-react-class "^15.5.1"
+    hoist-non-react-statics "^3.3.0"
+    invariant "^2.0.0"
+    lodash "^4.17.11"
+    loose-envify "^1.4.0"
+    prop-types "^15.7.2"
 
 react-redux@^5.0.6:
   version "5.0.6"
@@ -5959,7 +6063,7 @@ reduce-function-call@^1.0.1:
   dependencies:
     balanced-match "^0.4.2"
 
-redux@^3.7.2:
+redux@^3.5.0, redux@^3.7.2:
   version "3.7.2"
   resolved "https://registry.yarnpkg.com/redux/-/redux-3.7.2.tgz#06b73123215901d25d065be342eb026bc1c8537b"
   dependencies:
